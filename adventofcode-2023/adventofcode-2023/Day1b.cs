@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace adventofcode_2023
+﻿namespace adventofcode_2023
 {
-    internal static class Day1b
+    public static class Day1b
     {
-        public static void Answer() //Something is wrong
+        public static int Answer() 
         {
             Console.Write("Hello, solution for the 1. day part two: ");
 
+            int sumOfCalibrationValues = 0;
+
             using (StreamReader sr = new StreamReader("Day1_input.txt"))
-            {
-                int sumOfCalibrationValues = 0;
+            {               
                 while (!sr.EndOfStream)
                 {
                     string line = sr.ReadLine() ?? "";                    
@@ -23,6 +18,8 @@ namespace adventofcode_2023
                 }
                 Console.WriteLine(sumOfCalibrationValues);
             }
+
+            return sumOfCalibrationValues;
         }
     }
 }
