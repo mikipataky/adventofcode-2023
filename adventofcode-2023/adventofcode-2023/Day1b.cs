@@ -17,12 +17,8 @@ namespace adventofcode_2023
                 int sumOfCalibrationValues = 0;
                 while (!sr.EndOfStream)
                 {
-                    string line = sr.ReadLine() ?? "";
-                    string convertedLine = Helper.ConvertNumbersToDigits(line);
-                    //Console.WriteLine(line);
-                    //Console.WriteLine(convertedLine);
-                    int calibrationValue = Helper.LineToCalibrationValue(convertedLine);
-                    //Console.WriteLine(calibrationValue);    
+                    string line = sr.ReadLine() ?? "";                    
+                    int calibrationValue = Helper.LineToCalibrationValuePartTwo(line);                    
                     sumOfCalibrationValues += calibrationValue;
                 }
                 Console.WriteLine(sumOfCalibrationValues);
