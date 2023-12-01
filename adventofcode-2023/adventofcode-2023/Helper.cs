@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace adventofcode_2023
+﻿namespace AdventOfCode_2023
 {
     public static class Helper
     {
         static string[] NUMBERS = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
-        static public int LineToCalibrationValue(string line)
+        static public int LineToCalibrationValuePartOne(string line)
         {
             string numbers = new string(line.Where(c => !char.IsLetter(c)).ToArray());
             int firstNumber = int.Parse(numbers.First().ToString());
@@ -30,7 +22,7 @@ namespace adventofcode_2023
         {
             int result = 0;
             int index = -1;
-            int newIndex;          
+            int newIndex;
 
             for(int i = 1; i <= NUMBERS.Length; i++)
             {
@@ -39,7 +31,7 @@ namespace adventofcode_2023
                 {
                     index = newIndex;
                     result = i;
-                }             
+                }
             }
 
             return result;

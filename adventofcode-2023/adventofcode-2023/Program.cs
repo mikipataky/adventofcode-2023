@@ -1,8 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using adventofcode_2023;
+using AdventOfCode_2023;
 
-Day1a.Answer();
+Day1.AnswerPartOne();
 
-Day1b.Answer();
+Day1.AnswerPartTwo();
 
 
