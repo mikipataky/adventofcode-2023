@@ -62,5 +62,52 @@
 
             return result;
         }
+
+        public static bool IsGamePossible(int redCubes, int greenCubes, int blueCubes, string game)
+        {
+            foreach (string cubes in game.Replace(';', ',').Split(','))
+            {
+                string[] countAndColor = cubes.Trim().Split(' ');
+                string color = countAndColor[1];
+                int count = int.Parse(countAndColor[0]);
+
+                switch (color.ToLower())
+                {
+                    case "red": if (redCubes < count) return false; break;
+                    case "green": if (greenCubes < count) return false; break;
+                    case "blue": if (blueCubes < count) return false; break;
+                }
+            }
+
+            return true;
+        }
+
+        public static int PowerOfTheGame(string game)
+        {
+            int result = 1;
+            Dictionary<string, List<int>> cubesInGame = new Dictionary<string, List<int>>();
+
+            foreach (string cubes in game.Replace(';', ',').Split(','))
+            {
+                string[] countAndColor = cubes.Trim().Split(' ');
+                string color = countAndColor[1];
+                int count = int.Parse(countAndColor[0]);
+
+                if (cubesInGame.ContainsKey(color))
+                    cubesInGame[color].Add(count);
+                else
+                {
+                    cubesInGame[color] = new List<int>() { count };
+                }
+            }
+
+            foreach (string color in cubesInGame.Keys)
+            {
+                cubesInGame[color].Sort();
+                result *= cubesInGame[color].Last();
+            }
+
+            return result;
+        }
     }
 }

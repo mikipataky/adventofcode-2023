@@ -4,11 +4,6 @@ namespace AdventOfCode_2023Tests
 {
     public class Day1Tests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
         public void PartOne()
         {
