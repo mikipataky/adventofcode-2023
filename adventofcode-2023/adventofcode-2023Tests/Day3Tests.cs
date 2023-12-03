@@ -10,6 +10,7 @@ namespace AdventOfCode_2023Tests
     public class Day3Tests
     {
         char[][] enginSchematic;
+
         [SetUp]
         public void Setup()
         {
@@ -30,16 +31,16 @@ namespace AdventOfCode_2023Tests
         {
             int i = 2;
             int j = 38;
-            Assert.AreEqual(639, Helper.PartNumber(enginSchematic, i, ref j));
-            Assert.AreEqual(39, j);
+            Assert.That(Helper.PartNumber(enginSchematic, i, ref j), Is.EqualTo(639));
+            Assert.That(j, Is.EqualTo(39));
 
             j = 37;
-            Assert.AreEqual(639, Helper.PartNumber(enginSchematic, i, ref j));
-            Assert.AreEqual(39, j);
+            Assert.That(Helper.PartNumber(enginSchematic, i, ref j), Is.EqualTo(639));
+            Assert.That(j, Is.EqualTo(39));
 
             j = 36;
-            Assert.AreEqual(639, Helper.PartNumber(enginSchematic, i, ref j));
-            Assert.AreEqual(39, j);
+            Assert.That(Helper.PartNumber(enginSchematic, i, ref j), Is.EqualTo(639));
+            Assert.That(j, Is.EqualTo(39));
         }
 
         [Test]
@@ -47,8 +48,13 @@ namespace AdventOfCode_2023Tests
         {
             Assert.IsTrue(Helper.IsPartNumber(enginSchematic, 2, 24));
             Assert.IsFalse(Helper.IsPartNumber(enginSchematic, 1, 50));
+            Assert.IsFalse(Helper.IsPartNumber(enginSchematic, 0, 15));
         }
 
-
+        [Test]
+        public void PartOne()
+        {
+            Assert.That(Day3.AnswerPartOne(), Is.EqualTo(539637));
+        }
     }
 }

@@ -7,25 +7,25 @@ namespace AdventOfCode_2023Tests
         [Test]
         public void PartOne()
         {
-            Assert.AreEqual(56506, Day1.AnswerPartOne());
+            Assert.That(Day1.AnswerPartOne(), Is.EqualTo(56506));
         }
 
         [Test]
         public void PartTwo()
         {
-            Assert.AreEqual(56017, Day1.AnswerPartTwo());
+            Assert.That(Day1.AnswerPartTwo(), Is.EqualTo(56017));
         }
 
         [Test]
         public void LineToCalibrationValuePartTwo()
         {
-            Assert.AreEqual(67, Helper.LineToCalibrationValuePartTwo("tbsxkhhv6twozrtczg6seven"));
+            Assert.That(Helper.LineToCalibrationValuePartTwo("tbsxkhhv6twozrtczg6seven"), Is.EqualTo(67));
         }
 
         [Test]
         public void LineToCalibrationValuePartOne()
         {
-            Assert.AreEqual(66, Helper.LineToCalibrationValuePartOne("tbsxkhhv6twozrtczg6seven"));
+            Assert.That(Helper.LineToCalibrationValuePartOne("tbsxkhhv6twozrtczg6seven"), Is.EqualTo(66));
         }
     }
 }
