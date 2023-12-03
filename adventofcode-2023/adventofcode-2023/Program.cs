@@ -7,4 +7,7 @@ Day1.AnswerPartTwo();
 Day2.AnswerPartOne();
 Day2.AnswerPartTwo();
 
+Day3.AnswerPartOne();
+Day3.AnswerPartTwo();
+
 

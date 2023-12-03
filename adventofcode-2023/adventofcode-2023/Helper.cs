@@ -109,5 +109,79 @@
 
             return result;
         }
+
+        public static bool IsPartNumber(char[][] engineSchematic, int i, int j)
+        {
+            if(!Char.IsDigit(engineSchematic[i][j]))
+                return false;
+
+            int newi = i - 1;
+            int newj = j;
+
+            if(newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && engineSchematic[newi][newj] != '.' && !char.IsDigit(engineSchematic[newi][newj]))
+                return true;
+
+            newi = i - 1;
+            newj = j - 1;
+            if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && engineSchematic[newi][newj] != '.' && !char.IsDigit(engineSchematic[newi][newj]))
+                return true;
+
+            newi = i - 1;
+            newj = j + 1;
+            if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && engineSchematic[newi][newj] != '.' && !char.IsDigit(engineSchematic[newi][newj]))
+                return true;
+
+            newi = i;
+            newj = j - 1;
+            if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && engineSchematic[newi][newj] != '.' && !char.IsDigit(engineSchematic[newi][newj]))
+                return true;
+
+            newi = i;
+            newj = j + 1;
+            if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && engineSchematic[newi][newj] != '.' && !char.IsDigit(engineSchematic[newi][newj]))
+                return true;
+
+            newi = i + 1;
+            newj = j - 1;
+            if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && engineSchematic[newi][newj] != '.' && !char.IsDigit(engineSchematic[newi][newj]))
+                return true;
+
+            newi = i + 1;
+            newj = j;
+            if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && engineSchematic[newi][newj] != '.' && !char.IsDigit(engineSchematic[newi][newj]))
+                return true;
+
+            newi = i + 1;
+            newj = j + 1;
+            if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && engineSchematic[newi][newj] != '.' && !char.IsDigit(engineSchematic[newi][newj]))
+                return true;
+
+            return false;
+        }
+
+        public static int PartNumber(char[][] engineSchematic, int i, ref int j)
+        {
+            if(engineSchematic == null || !Char.IsDigit(engineSchematic[i][j]))
+                throw new ArgumentException();
+
+            int partNumber = Int32.Parse(engineSchematic[i][j].ToString());
+            int newj = j - 1;
+            int mutiply = 10;
+            while (newj > -1 && Char.IsDigit(engineSchematic[i][newj]))
+            {
+                partNumber = Int32.Parse(engineSchematic[i][newj].ToString()) * mutiply + partNumber;
+                newj -= 1;
+                mutiply *= 10;
+            }
+
+            newj = j + 1;
+            while(newj < engineSchematic[i].Length && Char.IsDigit(engineSchematic[i][newj]))
+            {
+                partNumber = Int32.Parse(engineSchematic[i][newj].ToString()) + partNumber * 10;
+                newj = newj + 1;
+            }
+            j = newj;
+            return partNumber;
+        }
     }
 }
