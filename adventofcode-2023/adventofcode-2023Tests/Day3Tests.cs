@@ -52,9 +52,27 @@ namespace AdventOfCode_2023Tests
         }
 
         [Test]
+        public void GearRatio()
+        {
+            int i = 8;
+            int j = 31;
+            Assert.That(Helper.GearRatio(enginSchematic, i, j), Is.EqualTo(145665));          
+
+            i = 1;
+            j = 9;
+            Assert.That(Helper.GearRatio(enginSchematic, i, j), Is.EqualTo(0));                       
+        }
+
+        [Test]
         public void PartOne()
         {
             Assert.That(Day3.AnswerPartOne(), Is.EqualTo(539637));
+        }
+
+        [Test]
+        public void PartTwo()
+        {
+            Assert.That(Day3.AnswerPartTwo(), Is.EqualTo(82818007));
         }
     }
 }

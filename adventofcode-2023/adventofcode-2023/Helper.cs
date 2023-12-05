@@ -24,7 +24,7 @@
             int index = -1;
             int newIndex;
 
-            for(int i = 1; i <= NUMBERS.Length; i++)
+            for (int i = 1; i <= NUMBERS.Length; i++)
             {
                 newIndex = Math.Max(line.LastIndexOf(NUMBERS[i - 1]), line.LastIndexOf(i.ToString()));
                 if (newIndex > index)
@@ -112,13 +112,14 @@
 
         public static bool IsPartNumber(char[][] engineSchematic, int i, int j)
         {
-            if(!Char.IsDigit(engineSchematic[i][j]))
+            if (!Char.IsDigit(engineSchematic[i][j]))
                 return false;
 
             int newi = i - 1;
             int newj = j;
 
-            if(newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && engineSchematic[newi][newj] != '.' && !char.IsDigit(engineSchematic[newi][newj]))
+
+            if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && engineSchematic[newi][newj] != '.' && !char.IsDigit(engineSchematic[newi][newj]))
                 return true;
 
             newi = i - 1;
@@ -161,7 +162,7 @@
 
         public static int PartNumber(char[][] engineSchematic, int i, ref int j)
         {
-            if(engineSchematic == null || !Char.IsDigit(engineSchematic[i][j]))
+            if (engineSchematic == null || !Char.IsDigit(engineSchematic[i][j]))
                 throw new ArgumentException();
 
             int partNumber = Int32.Parse(engineSchematic[i][j].ToString());
@@ -175,13 +176,68 @@
             }
 
             newj = j + 1;
-            while(newj < engineSchematic[i].Length && Char.IsDigit(engineSchematic[i][newj]))
+            while (newj < engineSchematic[i].Length && Char.IsDigit(engineSchematic[i][newj]))
             {
                 partNumber = Int32.Parse(engineSchematic[i][newj].ToString()) + partNumber * 10;
                 newj = newj + 1;
             }
             j = newj;
             return partNumber;
+        }
+
+        public static int GearRatio(char[][] engineSchematic, int i, int j)
+        {
+            int gearRatio = 0;
+            List<int> partNumbers = new List<int>();
+
+            int newi = i - 1;
+            int newj = j;
+            if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && char.IsDigit(engineSchematic[newi][newj]))
+                partNumbers.Add(PartNumber(engineSchematic, newi, ref newj));
+
+            newi = i - 1;
+            newj = j - 1;
+            if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && char.IsDigit(engineSchematic[newi][newj]))
+                partNumbers.Add(PartNumber(engineSchematic, newi, ref newj));
+
+            newi = i - 1;
+            newj = j + 1;
+            if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && char.IsDigit(engineSchematic[newi][newj]))
+                partNumbers.Add(PartNumber(engineSchematic, newi, ref newj));
+
+            newi = i;
+            newj = j - 1;
+            if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && char.IsDigit(engineSchematic[newi][newj]))
+                partNumbers.Add(PartNumber(engineSchematic, newi, ref newj));
+
+            newi = i;
+            newj = j + 1;
+            if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && char.IsDigit(engineSchematic[newi][newj]))
+                partNumbers.Add(PartNumber(engineSchematic, newi, ref newj));
+
+            newi = i + 1;
+            newj = j - 1;
+            if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && char.IsDigit(engineSchematic[newi][newj]))
+                partNumbers.Add(PartNumber(engineSchematic, newi, ref newj));
+
+
+            newi = i + 1;
+            newj = j + 1;
+            if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && char.IsDigit(engineSchematic[newi][newj]))
+                partNumbers.Add(PartNumber(engineSchematic, newi, ref newj));
+
+
+            newi = i + 1;
+            newj = j;
+            if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && char.IsDigit(engineSchematic[newi][newj]))
+                partNumbers.Add(PartNumber(engineSchematic, newi, ref newj));
+
+            List<int> partNumbersDistinc = partNumbers.Distinct().ToList();
+            if(partNumbersDistinc.Count() == 2)
+                gearRatio = partNumbersDistinc.First() * partNumbersDistinc.Last();
+
+
+            return gearRatio;
         }
     }
 }
