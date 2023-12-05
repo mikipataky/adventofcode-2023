@@ -23,7 +23,6 @@ namespace AdventOfCode_2023
                     tempSchematic.Add(line.ToCharArray());
                 }
                 char[][] enginSchematic = tempSchematic.ToArray();
-
                 for (int i = 0; i < enginSchematic.Length; i++)
                 {
                     for (int j = 0; j < enginSchematic[i].Length; j++)
@@ -43,6 +42,7 @@ namespace AdventOfCode_2023
 
         static public int AnswerPartTwo()
         {
+
             Console.Write("Hello, solution for the 3. day part one: ");
 
             int sumOfGearRatio = 0;

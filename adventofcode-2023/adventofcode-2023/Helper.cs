@@ -118,6 +118,7 @@
             int newi = i - 1;
             int newj = j;
 
+
             if (newi > -1 && newi < engineSchematic.Length && newj > -1 && newj < engineSchematic[newi].Length && engineSchematic[newi][newj] != '.' && !char.IsDigit(engineSchematic[newi][newj]))
                 return true;
 
