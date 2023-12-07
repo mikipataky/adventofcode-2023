@@ -14,5 +14,10 @@ namespace AdventOfCode_2023Tests
         {
             Assert.That(Day4.AnswerPartOne(), Is.EqualTo(27845));
         }
+
+        public void PartTwo()
+        {
+            Assert.That(Day4.AnswerPartOne(), Is.EqualTo(9496801));
+        }
     }
 }

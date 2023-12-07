@@ -11,3 +11,4 @@ Day3.AnswerPartOne();
 Day3.AnswerPartTwo();
 
 Day4.AnswerPartOne();
+Day4.AnswerPartTwo();
