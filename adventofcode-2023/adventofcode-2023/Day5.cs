@@ -22,7 +22,7 @@
             long lowestLocation = long.MaxValue;
 
             foreach (var seed in seeds)
-            {
+{
                 long soil = MapValue(soilMap, seed);
                 long fertilizer = MapValue(fertilizerMap, soil);
                 long water = MapValue(waterMap, fertilizer);
@@ -39,7 +39,7 @@
         }
 
         static IEnumerable<string> FindMapSection(string[] lines, string header)
-        {
+    {
             int startIndex = Array.IndexOf(lines, header) + 1;
             var sectionLines = new List<string>();
             for (int i = startIndex; i < lines.Length && !string.IsNullOrWhiteSpace(lines[i]); i++)
@@ -47,13 +47,13 @@
                 sectionLines.Add(lines[i]);
             }
             return sectionLines;
-        }
+    }
 
         static Dictionary<long, (long destinationStart, long sourceStart, long rangeLength)> ParseMappings(IEnumerable<string> mapLines)
-        {
+    {
             var map = new Dictionary<long, (long, long, long)>();
             foreach (var line in mapLines)
-            {
+        {
                 var parts = line.Split(' ');
                 long destinationStart = long.Parse(parts[0]);
                 long sourceStart = long.Parse(parts[1]);
@@ -61,9 +61,9 @@
 
                 // Instead of generating all mappings, store the start and end points of the ranges
                 map[sourceStart] = (destinationStart, sourceStart, rangeLength);
-            }
-            return map;
         }
+            return map;
+    }
 
         static long MapValue(Dictionary<long, (long destinationStart, long sourceStart, long rangeLength)> map, long sourceValue)
         {
@@ -74,13 +74,13 @@
                 long rangeLength = entry.Value.rangeLength;
 
                 if (sourceValue >= sourceStart && sourceValue < sourceStart + rangeLength)
-                {
+    {
                     // Calculate the offset from the start of the source range
                     long offset = sourceValue - sourceStart;
                     // Apply the same offset to the destination start
                     return entry.Value.destinationStart + offset;
                 }
-            }
+    }
 
             // If not found, the source number corresponds to the same destination number
             return sourceValue;
